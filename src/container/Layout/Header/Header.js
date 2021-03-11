@@ -88,7 +88,7 @@ export default withRouter(function Header({ location }) {
                 <Logo
                   withLink
                   linkTo="/"
-                  src="/images/logo-alt.svg"
+                  src="/images/rent-roster-icon-small.png"
                   title="RenRoster"
                 />
               </>
