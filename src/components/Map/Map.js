@@ -6,7 +6,11 @@ import ListingMapMarkerCluster from './ListingPageMap';
 import ListingMapMarkerSingle from './SinglePageMap';
 
 const Map = (props) => {
-  const { multiple, location, heatmap } = props;
+  const {
+    multiple,
+    location,
+    // heatmap
+  } = props;
   const handleClustererClick = (data) => {
     const markerClusterer = data.getMarkers();
     console.log(`Current clicked markers length: ${markerClusterer.length}`);
