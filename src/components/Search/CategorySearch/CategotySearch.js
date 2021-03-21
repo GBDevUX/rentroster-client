@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import moment from 'moment';
-import { Button, Slider, Checkbox } from 'antd';
+// import moment from 'moment';
+import { Button, Slider } from 'antd';
 import ViewWithPopup from '../../../components/UI/ViewWithPopup/ViewWithPopup';
 import InputIncDec from '../../../components/UI/InputIncDec/InputIncDec';
-import DateRangePickerBox from '../../../components/UI/DatePicker/ReactDates';
+// import DateRangePickerBox from '../../../components/UI/DatePicker/ReactDates';
 import { setStateToUrl, getStateFromUrl } from '../url_handler';
 import {
   priceInit,
-  calenderItem,
-  getAmenities,
-  getPropertyType,
+  // calenderItem,
+  // getAmenities,
+  // getPropertyType,
 } from '../SearchParams';
 import CategroySearchWrapper, {
-  RoomGuestWrapper,
+  // RoomGuestWrapper,
+  LeaseTermWrapper,
   ItemWrapper,
   ActionWrapper,
 } from './CategorySearch.style';
@@ -38,10 +39,20 @@ const CategotySearch = ({ history, location }) => {
     },
     room: parseInt(searchParams.room) || 0,
     guest: parseInt(searchParams.guest) || 0,
+    lease_term: parseInt(searchParams.lease_term) || 0,
   };
-  const { amenities, property, date_range, price, room, guest } = state;
-  const [countRoom, setRoom] = useState(room);
-  const [countGuest, setGuest] = useState(guest);
+  const {
+    // amenities,
+    // property,
+    // date_range,
+    price,
+    // room,
+    // guest,
+    lease_term
+  } = state;
+  // const [countRoom, setRoom] = useState(room);
+  // const [countGuest, setGuest] = useState(guest);
+  const [countMonths, setMonths] = useState(lease_term);
 
   const onChange = (value, type) => {
     const query = {
@@ -55,11 +66,38 @@ const CategotySearch = ({ history, location }) => {
     });
   };
 
-  const handleRoomGuestApply = () => {
+  // const handleRoomGuestApply = () => {
+  //   const query = {
+  //     ...state,
+  //     room: countRoom,
+  //     guest: countGuest,
+  //   };
+  //   const search = setStateToUrl(query);
+  //   history.push({
+  //     pathname: '/',
+  //     search: search,
+  //   });
+  // };
+
+  // const handleRoomGuestCancel = () => {
+  //   setRoom(0);
+  //   setGuest(0);
+  //   const query = {
+  //     ...state,
+  //     room: 0,
+  //     guest: 0,
+  //   };
+  //   const search = setStateToUrl(query);
+  //   history.push({
+  //     pathname: '/',
+  //     search: search,
+  //   });
+  // };
+
+  const handleLeaseTermApply = () => {
     const query = {
       ...state,
-      room: countRoom,
-      guest: countGuest,
+      lease_term: countMonths,
     };
     const search = setStateToUrl(query);
     history.push({
@@ -68,13 +106,11 @@ const CategotySearch = ({ history, location }) => {
     });
   };
 
-  const handleRoomGuestCancel = () => {
-    setRoom(0);
-    setGuest(0);
+  const handleLeaseTermCancel = () => {
+    setMonths(0);
     const query = {
       ...state,
-      room: 0,
-      guest: 0,
+      lease_term: 0,
     };
     const search = setStateToUrl(query);
     history.push({
@@ -84,8 +120,9 @@ const CategotySearch = ({ history, location }) => {
   };
 
   const onSearchReset = () => {
-    setRoom(0);
-    setGuest(0);
+    // setRoom(0);
+    // setGuest(0);
+    setMonths(0);
     const search = setStateToUrl({ reset: '' });
     history.push({
       pathname: '/',
@@ -95,7 +132,7 @@ const CategotySearch = ({ history, location }) => {
 
   return (
     <CategroySearchWrapper>
-      <ViewWithPopup
+      {/* <ViewWithPopup
         className={amenities.length ? 'activated' : ''}
         key={getAmenities.id}
         noView={true}
@@ -159,7 +196,7 @@ const CategotySearch = ({ history, location }) => {
             updateSearchData={(value) => onChange(value, 'date_range')}
           />
         }
-      />
+      /> */}
 
       <ViewWithPopup
         className={
@@ -172,8 +209,8 @@ const CategotySearch = ({ history, location }) => {
         view={
           <Button type="default">
             {price.min > 0 || price.max < 100
-              ? `Price: ${price.min}, ${price.max}`
-              : `Price per night`}
+              ? `Monthly Rate: ${price.min}, ${price.max}`
+              : `Price per month`}
           </Button>
         }
         popup={
@@ -188,7 +225,7 @@ const CategotySearch = ({ history, location }) => {
         }
       />
 
-      <ViewWithPopup
+      {/* <ViewWithPopup
         key={200}
         noView={true}
         className={countRoom || countGuest ? 'activated' : ''}
@@ -239,6 +276,46 @@ const CategotySearch = ({ history, location }) => {
               </Button>
             </ActionWrapper>
           </RoomGuestWrapper>
+        }
+      /> */}
+
+      <ViewWithPopup
+        key={100}
+        noView={true}
+        className={countMonths  ? 'activated' : ''}
+        view={
+          <Button type="default">
+            Lease Term {countMonths > 0 && `: ${countMonths}`}
+          </Button>
+        }
+        popup={
+          <LeaseTermWrapper>
+            <ItemWrapper>
+              <strong>Lease Term</strong>
+              <InputIncDec
+                id="lease-term"
+                increment={() => setMonths((countMonths) => countMonths + 1)}
+                decrement={() =>
+                  setMonths((countMonths) => countMonths > 0 && countMonths - 1)
+                }
+                onChange={(e) => setMonths(e.target.value)}
+                value={countMonths}
+              />
+            </ItemWrapper>
+
+            <ActionWrapper>
+              {countMonths ? (
+                <Button type="default" onClick={handleLeaseTermCancel}>
+                  Clear
+                </Button>
+              ) : (
+                ''
+              )}
+              <Button type="primary" onClick={handleLeaseTermApply}>
+                Apply
+              </Button>
+            </ActionWrapper>
+          </LeaseTermWrapper>
         }
       />
       <div className="view_with__popup">

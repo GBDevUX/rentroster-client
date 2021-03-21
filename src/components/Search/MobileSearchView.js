@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import moment from 'moment';
+// import moment from 'moment';
 import { Slider, Button, Drawer, Checkbox } from 'antd';
 import Heading from '../../components/UI/Heading/Heading';
-import DateRangePicker from '../../components/UI/DatePicker/ReactDates';
+// import DateRangePicker from '../../components/UI/DatePicker/ReactDates';
 import InputIncDec from '../../components/UI/InputIncDec/InputIncDec';
 import { setStateToUrl, getStateFromUrl } from './url_handler';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -16,7 +16,7 @@ import {
 
 import {
   priceInit,
-  calenderItem,
+  // calenderItem,
   getAmenities,
   getPropertyType,
 } from './SearchParams';
@@ -101,12 +101,12 @@ const FilterDrawer = ({ history, location }) => {
       defaultMax: price.defaultMax,
     });
   };
-  const updateSearchDataFunc = (setDateValue) => {
-    setSearchDate({
-      setStartDate: setDateValue.setStartDate,
-      setEndDate: setDateValue.setEndDate,
-    });
-  };
+  // const updateSearchDataFunc = (setDateValue) => {
+  //   setSearchDate({
+  //     setStartDate: setDateValue.setStartDate,
+  //     setEndDate: setDateValue.setEndDate,
+  //   });
+  // };
   const handleApplyFilter = () => {
     const search = setStateToUrl({
       amenities: amenities,
@@ -189,7 +189,7 @@ const FilterDrawer = ({ history, location }) => {
                 </AccordionItemButton>
               </AccordionItemHeading>
               <AccordionItemPanel>
-                <DateRangePicker
+                {/* <DateRangePicker
                   startDateId="startDate-id-mobile"
                   endDateId="endDate-id-mobile"
                   numberOfMonths={1}
@@ -206,7 +206,7 @@ const FilterDrawer = ({ history, location }) => {
                   updateSearchData={(setDateValue) =>
                     updateSearchDataFunc(setDateValue)
                   }
-                />
+                /> */}
               </AccordionItemPanel>
             </AccordionItem>
             {/* End of date filter element */}

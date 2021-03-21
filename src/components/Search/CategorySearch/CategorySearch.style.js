@@ -123,6 +123,16 @@ export const RoomGuestWrapper = styled.div`
   }
 `;
 
+export const LeaseTermWrapper = styled.div`
+  width: 100%;
+
+  strong {
+    font-size: 15px;
+    font-weight: 400;
+    color: ${themeGet('text.0', '#2C2C2C')};
+  }
+`;
+
 export const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
