@@ -3,7 +3,7 @@ import moment from 'moment';
 import { Button, Slider, Checkbox } from 'antd';
 import ViewWithPopup from '../../../components/UI/ViewWithPopup/ViewWithPopup';
 import InputIncDec from '../../../components/UI/InputIncDec/InputIncDec';
-import DateRangePickerBox from '../../../components/UI/DatePicker/ReactDates';
+// import DateRangePickerBox from '../../../components/UI/DatePicker/ReactDates';
 import { setStateToUrl, getStateFromUrl } from '../url_handler';
 import {
   priceInit,
