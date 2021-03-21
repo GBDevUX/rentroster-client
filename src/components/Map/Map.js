@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import MarkerClusterer from 'react-google-maps/lib/components/addons/MarkerClusterer';
 import MapWrapper from './MapWrapper';
@@ -5,7 +6,7 @@ import ListingMapMarkerCluster from './ListingPageMap';
 import ListingMapMarkerSingle from './SinglePageMap';
 
 const Map = (props) => {
-  const { multiple, location } = props;
+  const { multiple, location, heatmap } = props;
   const handleClustererClick = (data) => {
     const markerClusterer = data.getMarkers();
     console.log(`Current clicked markers length: ${markerClusterer.length}`);
@@ -32,6 +33,11 @@ const Map = (props) => {
           >
             <ListingMapMarkerCluster location={location} />
           </MarkerClusterer>
+          {/* {heatmap ? (
+            <HeatmapLayer data = {} />
+          ) : (
+            null
+          )} */}
         </MapWrapper>
       ) : (
         <MapWrapper

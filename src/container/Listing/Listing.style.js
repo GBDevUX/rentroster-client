@@ -166,4 +166,45 @@ export const FixedMap = styled.div`
   }
 `;
 
+export const ShowHeatMapCheckbox = styled.div`
+  .ant-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .ant-checkbox {
+    top: 0;
+    + span {
+      font-size: 14px;
+      font-weight: 700;
+      color: ${themeGet('text.0', '#2C2C2C')};
+    }
+  }
+
+  .ant-checkbox-inner {
+    width: 20px;
+    height: 20px;
+    border-color: ${themeGet('border.3', '#E6E6E6')};
+  }
+
+  .ant-checkbox-wrapper {
+    .ant-checkbox-checked {
+      .ant-checkbox-inner {
+        border-color: ${themeGet('primary.0', '#008489')};
+        background-color: ${themeGet('primary.0', '#008489')};
+        &::after {
+          transform: rotate(45deg) scale(1) translate(-50%, -70%);
+        }
+      }
+    }
+  }
+
+  .ant-checkbox-wrapper:hover .ant-checkbox-inner,
+  .ant-checkbox:hover .ant-checkbox-inner,
+  .ant-checkbox-input:focus + .ant-checkbox-inner {
+    border-color: ${themeGet('primary.0', '#008489')};
+  }
+`;
+
 export default ListingWrapper;

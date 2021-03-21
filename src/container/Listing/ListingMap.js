@@ -85,7 +85,7 @@ const ListingMap = () => {
 
   return (
     <FixedMap>
-      <Map location={ mapData } multiple={true} />
+      <Map location={ mapData } multiple={true} heatmap={true} />
     </FixedMap>
   );
 };
